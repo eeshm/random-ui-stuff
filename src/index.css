@@ -1,7 +1,5 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:is(.dark *));
-
 :root {
   --background: oklch(100% 0.00011 271.152);
   --foreground: oklch(0% 0 0);
@@ -124,6 +122,19 @@
 }
 
 @layer utilities {
+  @keyframes orbit {
+    0%{
+      transform: rotate(0deg) translate(var(--translate-position)) rotate(0deg);
+    }
+    100%{
+      transform: rotate(360deg) translate(var(--translate-position)) rotate(-360deg);
+    }
+  }
+
+  .animate-orbit {
+    animation: orbit 10s linear infinite;
+  }
+
   @keyframes glitch-fade {
     0% {
       opacity: 1;
