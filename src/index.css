@@ -132,7 +132,7 @@
   }
 
   .animate-orbit {
-    animation: orbit 10s linear infinite;
+    animation: orbit var(--orbit-duration) linear infinite;
   }
 
   @keyframes glitch-fade {
