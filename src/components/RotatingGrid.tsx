@@ -4,8 +4,11 @@ import { cn } from "../lib/utils";
 
 const RotatingGrid = () => {
     return (
-        <div className="absolute flex items-center justify-center w-full h-full inset-x-0 p-2">
-            <Circle className="flex items-center justify-center border-neutral-200 shadow-xs">
+        <div className="absolute flex items-center justify-center w-full h-full inset-x-0 p-2"
+        style={{
+            transform : "rotateY(20deg) rotateX(20deg) rotateZ(-20deg)"
+        }}>
+            <Circle className="flex items-center justify-center border-neutral-200 shadow-xs ">
                 <Icon />
                 <RotatingCard className=" [--translate-position:120px] [--orbit-duration:10s]">     
                     <Icon1 />
