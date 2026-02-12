@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 5173
 
-CMD [ "npm","dev"]
+CMD ["npm", "run", "start", "--", "--host", "0.0.0.0"]
