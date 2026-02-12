@@ -1,7 +1,7 @@
 "use client"
 import { motion } from "framer-motion"
 
-function ClipPath({ children }: { children?: React.ReactNode }) {
+function ClipPath() {
     return (
         <div className="w-full h-80  flex items-center justify-center relative">
             <h2 className="text-7xl w-full h-full items-center font-bold bg-black text-white flex justify-center">Hello eesh</h2>

@@ -1,6 +1,6 @@
 import './App.css'
-import HoverGlitch from './components/HoverGlitch'
-import RotatingGrid from './components/RotatingGrid'
+// import HoverGlitch from './components/HoverGlitch'
+// import RotatingGrid from './components/RotatingGrid'
 import ClipPath from './components/ClipPath'
 
 const App = () => {
