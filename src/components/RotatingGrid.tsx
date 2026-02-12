@@ -5,20 +5,19 @@ import { cn } from "../lib/utils";
 const RotatingGrid = () => {
     return (
         <div className="absolute flex items-center justify-center w-full h-full inset-x-0 p-2"
-        style={{
-            transform : "rotateY(20deg) rotateX(20deg) rotateZ(-20deg)"
-        }}>
+            style={{
+                transform: "rotateY(20deg) rotateX(20deg) rotateZ(-20deg)"
+            }}>
             <Circle className="flex items-center justify-center border-neutral-200 shadow-xs ">
                 <Icon />
-                <RotatingCard className=" [--translate-position:120px] [--orbit-duration:10s]">     
+                <RotatingCard className=" [--translate-position:120px] [--orbit-duration:10s]">
                     <Icon1 />
-                 </RotatingCard>
+                </RotatingCard>
                 <RotatingCard className=" [--translate-position:200px] [--orbit-duration:20s]">
                     <Icon1 />
                 </RotatingCard>
             </Circle >
             <Circle className="border-neutral-50 shadow size-60 bg-neutral-200/80 z-9 relative" >
-
             </Circle>
             <Circle className="border-neutral-50 shadow size-80 bg-neutral-200/60 z-8" />
             <Circle className="border-neutral-50 shadow size-100 bg-neutral-200/40 z-7" />
@@ -59,11 +58,11 @@ const Icon1 = () => {
     )
 }
 
-const RotatingCard = ({className, children }: { className:string,children: React.ReactElement }) => {
+const RotatingCard = ({ className, children }: { className: string, children: React.ReactElement }) => {
     return (
         <div className={cn("size-8 absolute inset-0 m-auto rounded-lg bg-white flex items-center justify-center border border-transparent shadow-black/10 ring-1",
-        " ring-black/10 animate-orbit",
-        className)}>
+            " ring-black/10 animate-orbit",
+            className)}>
             {children}
         </div>
     )
