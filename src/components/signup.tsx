@@ -1,63 +1,52 @@
 import React, { useState } from "react"
+import { useForm} from "react-hook-form";
+import {z}  from "zod";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { data } from "framer-motion/client";
+
+const signupSchema = z.object({
+    name:z.string().min(6, "Can't be smaller than 6").max(20, "Can't be greater than 20"),
+    email:z.string().email("Invalid email"),
+    password: z.string().min(6, "Can't be smaller than 6").max(20, "Can't be greater than 20"),
+    confirmPassword:z.string().min(6, "Can't be smaller than 6").max(20, "Can't be greater than 20")
+}).refine((data)=>data.password == data.confirmPassword,{
+    error: "Password do not match",
+    path:["confirmPassword"]
+})
+
+type SignupForm = z.infer<typeof signupSchema>
 
 function Signup() {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-    const [errors, setErrors] = useState({
-        name: "",
-        email: "",
-        password: "",
-        confirmPassword: ""
+    const {register, handleSubmit, formState :{errors,isSubmitting}} = useForm<SignupForm>({
+        resolver : zodResolver(signupSchema)
     })
 
-    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-        e.preventDefault();
-        let newErrors = {
-            name: "",
-            email: "",
-            password: "",
-            confirmPassword: ""
-        }
-
-        if (!name) newErrors.name = "Name is requried"
-        if (!email) newErrors.email = "Email is requried"
-        if (!password) newErrors.password = "Password is requried"
-        if (!confirmPassword) {
-            newErrors.confirmPassword = " Confirm password is requried"
-        } else if (confirmPassword !== password) newErrors.confirmPassword = "Passwords do not match";
-
-        const valid = Object.values(newErrors).every(err => err == null)
-        if (!valid) {
-            setErrors(newErrors);
-        }
-        else {
-            alert("submitted");
-        }
+    async function onSubmit(data: SignupForm) {
+        alert("submitted");
+        console.log(data);
     }
 
     return (
         <div className="flex flex-col ">
             <div className="text-red-600"> Signup form</div>
-            <form className="flex flex-col space-y-3" onSubmit={handleSubmit}>
-                <label htmlFor={name} >Name</label>
-                <Input value={name} onChange={setName} />
-                {errors.name && <div>{errors.name}</div>}
+            <form className="flex flex-col space-y-3" onSubmit={handleSubmit(onSubmit)}>
 
-                <label htmlFor={email} >Email</label>
-                <Input value={email} onChange={setEmail} />
-                {errors.email && <div>{errors.email}</div>}
+                <input {...register("name")} type="text" placeholder="Name" />
+                {errors.name && <div>{errors.name.message}</div>}
 
-                <label htmlFor={password} >Password</label>
-                <Input value={password} onChange={setPassword} />
-                {errors.password && <div>{errors.password}</div>}
+                {/* <label htmlFor={email} >Email</label> */}
+                <input {...register("email")} type="email" placeholder="Email"/>
+                {errors.email && <div>{errors.email.message}</div>}
+
+                {/* <label htmlFor={password} >Password</label> */}
+                <input {...register("password")} type="password" placeholder="Password" />
+                {errors.password && <div>{errors.password.message}</div>}
 
 
-                <label htmlFor={confirmPassword} >Confirm</label>
-                <Input value={confirmPassword} onChange={setConfirmPassword} />
-                {errors.confirmPassword && <div>{errors.confirmPassword}</div>}
-                <button className="rounded-md bg-black text-white" type="submit">Submit</button>
+                {/* <label htmlFor={confirmPassword} >Confirm</label> */}
+                <input {...register("confirmPassword")} type="password" placeholder="Confirm" />
+                {errors.confirmPassword && <div>{errors.confirmPassword.message}</div>}
+                <button className="rounded-md bg-black text-white" type="submit" disabled={isSubmitting}>Submit</button>
             </form>
         </div>
     )

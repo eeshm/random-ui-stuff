@@ -1,18 +1,19 @@
 import './App.css'
 // import HoverGlitch from './components/HoverGlitch'
 // import RotatingGrid from './components/RotatingGrid'
-import ClipPath from './components/ClipPath'
 import Signup from './components/signup'
+import Upload from './components/upload'
 
 const App = () => {
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
+    <main className="flex min-h-screen w-full items-center justify-center ">
       {/* <HoverGlitch /> */}
       {/* <RotatingGrid  /> */}
       {/* <ClipPath/> */}
       <Signup/>
-    </div>
+      {/* <Upload /> */}
+    </main>
   )
 }
 export default App
